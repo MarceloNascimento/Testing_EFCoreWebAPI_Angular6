@@ -14,9 +14,9 @@ namespace Examples.Charge.Application.Facade
         private readonly IPersonService _personService;
         private readonly IMapper _mapper;
 
-        public PersonFacade(IPersonService personService, IMapper mapper)
+        public PersonFacade(IPersonService service, IMapper mapper)
         {
-            _personService = personService;
+            this._personService = service;
             _mapper = mapper;
         }
 
@@ -28,5 +28,20 @@ namespace Examples.Charge.Application.Facade
             response.PersonObjects.AddRange(result.Select(x => _mapper.Map<PersonDto>(x)));
             return response;
         }
+
+        public async Task<PersonResponse> FindByIdAsync(int id)
+        {
+            var entity = await _personService.FindByIdAsync(id);
+            var entityDto = _mapper.Map<PersonDto>(entity);
+            var response = new PersonResponse(); //TODO: Should be resolving DI for these line
+
+
+            response.PersonObjects = new List<PersonDto>();
+            response.PersonObjects.Add(entityDto);
+
+
+            return response;
+        }
+
     }
 }

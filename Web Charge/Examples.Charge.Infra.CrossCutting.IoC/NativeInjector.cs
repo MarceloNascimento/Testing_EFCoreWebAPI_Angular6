@@ -37,6 +37,8 @@ namespace Examples.Charge.Infra.CrossCutting.IoC
             
             services.AddScoped<IPhoneNumberTypeService, PhoneNumberTypeService>();
             services.AddScoped<IPhoneNumberTypeRepository, PhoneNumberTypeRepository>();
+
+
         }
 
         private static void RegisterAutoMapper(IServiceCollection services)

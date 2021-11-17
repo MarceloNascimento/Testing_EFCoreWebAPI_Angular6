@@ -8,5 +8,11 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces
     public interface IPersonRepository
     {
         Task<IEnumerable<PersonAggregate.Person>> FindAllAsync();
+
+        Task<PersonAggregate.Person> FindByIdAsync(int id);
+
+        Task<PersonAggregate.Person> FindByNameAsync(string name);
+
+        PersonAggregate.Person UpdateAsybc(Person entity);
     }
 }
