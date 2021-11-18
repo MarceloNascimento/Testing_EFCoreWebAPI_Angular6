@@ -8,5 +8,7 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces
     public interface IPersonPhoneRepository
     {
         Task<IEnumerable<PersonAggregate.PersonPhone>> FindAllAsync();
+
+        Task<PersonAggregate.PersonPhone> FindByIdAsync(int id);
     }
 }

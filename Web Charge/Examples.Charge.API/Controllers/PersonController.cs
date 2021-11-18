@@ -2,10 +2,9 @@
 
 namespace Examples.Charge.API.Controllers
 {
-    using Microsoft.AspNetCore.Http;
+
     using Microsoft.AspNetCore.Mvc;
     using AutoMapper;
-    using Microsoft.AspNetCore.Mvc;
     using Examples.Charge.Application.Interfaces;
     using Examples.Charge.Application.Messages.Request;
     using Examples.Charge.Application.Messages.Response;
@@ -30,7 +29,7 @@ namespace Examples.Charge.API.Controllers
 
 
         [HttpGet("{id}")]
-        public ActionResult<PersonResponse> Get(int id)
+        public async Task<ActionResult<PersonResponse>> GetAsync(int id)
         {
             var response = await _facade.FindByIdAsync(id);
             return Response(response);

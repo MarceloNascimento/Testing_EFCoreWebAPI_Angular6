@@ -1,11 +1,9 @@
 ﻿
 
 namespace Examples.Charge.API.Controllers
-{
-    using Microsoft.AspNetCore.Http;
+{  
     using Microsoft.AspNetCore.Mvc;
-    using AutoMapper;
-    using Microsoft.AspNetCore.Mvc;
+    using AutoMapper;   
     using Examples.Charge.Application.Interfaces;
     using Examples.Charge.Application.Messages.Request;
     using Examples.Charge.Application.Messages.Response;
@@ -16,7 +14,6 @@ namespace Examples.Charge.API.Controllers
     public class PersonPhoneController : BaseController
     {
         private IPersonPhoneFacade _facade;
-
 
         //IPersonPhone
         public PersonPhoneController(IPersonPhoneFacade facade, IMapper mapper)

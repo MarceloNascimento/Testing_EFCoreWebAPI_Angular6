@@ -3,7 +3,7 @@
 namespace Examples.Charge.Application.Dtos
 {
 
-    public class PersonPhoneDto
+    public class PhoneNumberTypeDto
     {
         public int Id { get; set; }
         public string PhoneNumber { get; set; }
@@ -11,8 +11,8 @@ namespace Examples.Charge.Application.Dtos
         public int PhoneNumberTypeID { get; set; }
         public string PhoneNumberTypeName { get; set; }
 
+      
 
-        public int PersonID { get; set; }
-        public string PersonName { get; set; }
+
     }
 }

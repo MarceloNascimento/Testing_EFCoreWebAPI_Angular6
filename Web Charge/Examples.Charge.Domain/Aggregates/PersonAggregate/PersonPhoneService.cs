@@ -13,6 +13,11 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
             _personPhoneRepository = personPhoneRepository;
         }
 
-        public async Task<List<PersonPhone>> FindAllAsync() => (await _personPhoneRepository.FindAllAsync()).ToList();
+        public async Task<IEnumerable<PersonPhone>> FindAllAsync() => (await _personPhoneRepository.FindAllAsync()).ToList();
+
+
+        public async Task<PersonPhone> FindByIdAsync(int id) => (await _personPhoneRepository.FindByIdAsync(id));
+
+       
     }
 }

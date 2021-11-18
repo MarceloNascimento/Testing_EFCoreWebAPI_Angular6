@@ -4,6 +4,7 @@ using Examples.Charge.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Examples.Charge.Infra.Data.Repositories
 {
@@ -20,6 +21,12 @@ namespace Examples.Charge.Infra.Data.Repositories
 
         public async Task<PersonPhone> FindByIdAsync(int id) => await _context.PersonPhone.FindAsync(id);
 
+        public IEnumerable<PersonPhone> FindByPersonId(int personId) => _context.PersonPhone
+            .Where(p => p.Person.BusinessEntityID == personId).ToList();
+
+
+
+
         public async Task<PersonPhone> FindByNameAsync(string name) => await _context.PersonPhone.FindAsync(name);
 
         public PersonPhone UpdateAsybc(PersonPhone entity)
@@ -28,6 +35,7 @@ namespace Examples.Charge.Infra.Data.Repositories
 
             return result.Entity;
         }
+
 
     }
 }

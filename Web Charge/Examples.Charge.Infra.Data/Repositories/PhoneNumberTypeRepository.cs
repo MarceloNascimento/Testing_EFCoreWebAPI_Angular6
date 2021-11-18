@@ -22,7 +22,12 @@ namespace Examples.Charge.Infra.Data.Repositories
 
         public async Task<PhoneNumberType> FindByNameAsync(string name) => await _context.PhoneNumberType.FindAsync(name);
 
-        public PhoneNumberType UpdateAsybc(PhoneNumberType entity) => _context.PhoneNumberType.Update(entity).Entity;
+        public async Task<PhoneNumberType> UpdateAsync(PhoneNumberType entity)
+        {
+            var result = (await _context.PhoneNumberType.AddAsync(entity)).Entity;
+            _ = await _context.SaveChangesAsync();
 
+            return result;
+        }
     }
 }
