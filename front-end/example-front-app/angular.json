@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "example-test-app": {
+    "example-front-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/example-test-app",
+            "outputPath": "dist/example-front-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "example-test-app:build"
+            "browserTarget": "example-front-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "example-test-app:build:production"
+              "browserTarget": "example-front-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "example-test-app:build"
+            "browserTarget": "example-front-app:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "example-test-app-e2e": {
+    "example-front-app-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "example-test-app:serve"
+            "devServerTarget": "example-front-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "example-test-app:serve:production"
+              "devServerTarget": "example-front-app:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "example-test-app"
+  "defaultProject": "example-front-app"
 }

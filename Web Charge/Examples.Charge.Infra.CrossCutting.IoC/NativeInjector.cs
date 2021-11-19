@@ -1,17 +1,18 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
-using Examples.Charge.Application.AutoMapper;
-using Examples.Charge.Application.Dtos;
-using Examples.Charge.Application.Facade;
-using Examples.Charge.Application.Interfaces;
-using Examples.Charge.Domain.Aggregates.ExampleAggregate;
-using Examples.Charge.Domain.Aggregates.ExampleAggregate.Interfaces;
-using Examples.Charge.Domain.Aggregates.PersonAggregate;
-using Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces;
-using Examples.Charge.Infra.Data.Repositories;
+﻿
 
 namespace Examples.Charge.Infra.CrossCutting.IoC
 {
+    using AutoMapper;
+    using Microsoft.Extensions.DependencyInjection;
+    using Examples.Charge.Application.AutoMapper;
+    using Examples.Charge.Application.Dtos;
+    using Examples.Charge.Application.Facade;
+    using Examples.Charge.Application.Interfaces;
+    using Examples.Charge.Domain.Aggregates.ExampleAggregate;
+    using Examples.Charge.Domain.Aggregates.ExampleAggregate.Interfaces;
+    using Examples.Charge.Domain.Aggregates.PersonAggregate;
+    using Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces;
+    using Examples.Charge.Infra.Data.Repositories;
     public class NativeInjector
     {
         public static void Setup(IServiceCollection services)
