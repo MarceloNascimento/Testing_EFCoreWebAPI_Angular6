@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PersonComponent } from './person/person.component';
-import { PhoneComponent } from './phone/phone.component';
-import { PhonetypeComponent } from './phonetype/phonetype.component';
+import { HomeComponent } from './home/home.component';
+import { PersonphoneEditComponent } from './personphone/personphone-edit/personphone-edit.component';
+import { PersonPhoneListComponent } from './personphone/personphone-list/personphone-list.component';
 
 const routes: Routes = [
 
-  {path: '', component: PersonComponent},
+  {path: '', component: HomeComponent},
 
-  {path: 'person-list', component: PersonComponent},
+  {path: 'home', component: HomeComponent},
 
-  {path: 'phones-list', component: PhoneComponent},
+  {path: 'phones', component: PersonPhoneListComponent},
 
-  {path: 'phonestypes-list', component: PhonetypeComponent},
-
+  {path: 'phones-edit/:personId/:phoneNumber', component: PersonphoneEditComponent},
 ];
 
 @NgModule({

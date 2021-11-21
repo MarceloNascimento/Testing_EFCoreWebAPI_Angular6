@@ -9,13 +9,19 @@
     {
         public PersonPhoneProfile()
         {
+           
             CreateMap<PersonPhone, PersonPhoneDto>()
-               .ReverseMap()
-               .ForMember(dest => dest.BusinessEntityID,opt => opt.MapFrom(src => src.Id))
-               .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
-               .ForMember(dest => dest.PhoneNumberTypeID, opt => opt.MapFrom(src => src.PhoneNumberTypeID))
-               .ForPath(dest => dest.PhoneNumberType.Name, opt => opt.MapFrom(src => src.PhoneNumberTypeName)
-               );
+
+              .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.BusinessEntityID))
+              .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
+
+              .ForMember(dest => dest.PhoneNumberTypeID, opt => opt.MapFrom(src => src.PhoneNumberTypeID))
+              .ForPath(dest => dest.PhoneNumberTypeName, opt => opt.MapFrom(src => src.PhoneNumberType.Name))
+
+              .ForPath(dest => dest.PersonID, opt => opt.MapFrom(src => src.Person.BusinessEntityID))
+              .ForPath(dest => dest.PersonName, opt => opt.MapFrom(src => src.Person.Name)
+
+              ).ReverseMap();
         }
     }
 }

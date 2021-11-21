@@ -9,18 +9,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { PersonComponent } from './person/person.component';
+import { HomeComponent } from './home/home.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PhoneComponent } from './phone/phone.component';
-import { PhonetypeComponent } from './phonetype/phonetype.component';
+import { PersonPhoneListComponent } from './personphone/personphone-list/personphone-list.component';
+import { PersonphoneEditComponent } from './personphone/personphone-edit/personphone-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonComponent,
-    PhoneComponent,
-    PhonetypeComponent
+    HomeComponent,
+    PersonPhoneListComponent,
+    PersonphoneEditComponent
   ],
   imports: [
     BrowserModule,

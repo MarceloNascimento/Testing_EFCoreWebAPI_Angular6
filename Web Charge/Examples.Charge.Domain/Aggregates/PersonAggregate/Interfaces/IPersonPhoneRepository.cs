@@ -9,6 +9,6 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces
     {
         Task<IEnumerable<PersonAggregate.PersonPhone>> FindAllAsync();
 
-        Task<PersonAggregate.PersonPhone> FindByIdAsync(int id);
+        Task<PersonAggregate.PersonPhone> FindEntityAsync(int personId, string phoneNumber);
     }
 }

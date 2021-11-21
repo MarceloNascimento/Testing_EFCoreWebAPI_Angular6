@@ -16,34 +16,34 @@ namespace Examples.Charge.Application.Facade
         private readonly IPersonPhoneService _personPhoneService;
         private readonly IMapper _mapper;
 
-        public PersonPhoneFacade(IPersonPhoneService personPhoneService, IMapper mapper)
+        public PersonPhoneFacade(IPersonPhoneService service, IMapper mapper)
         {
-            _personPhoneService = personPhoneService;
+            _personPhoneService = service;
             _mapper = mapper;
         }
 
-        public async Task<PersonResponse> FindAllAsync()
+        public async Task<PersonPhoneResponse> FindAllAsync()
         {
             var result = await _personPhoneService.FindAllAsync();
-            var response = new PersonResponse();
-            response.PersonObjects = new List<PersonDto>();
-            response.PersonObjects.AddRange(result.Select(x => _mapper.Map<PersonDto>(x)));
+            var response = new PersonPhoneResponse();
+            response.PersonPhoneObjects = new List<PersonPhoneDto>();          
+            var range = _mapper.Map<List<PersonPhoneDto>>(result);
+            response.PersonPhoneObjects.AddRange(range);
             return response;
         }
 
-        public async Task<PersonResponse> FindByIdAsync(int id)
+        public async Task<PersonPhoneResponse> FindEntityAsync(int personId, string phoneNumber)
         {
-            var entity = await _personPhoneService.FindByIdAsync(id);
-            var entityDto = _mapper.Map<PersonDto>(entity);
-            var response = new PersonResponse(); //TODO: Should be resolving DI for these line
+            var entity = await _personPhoneService.FindEntityAsync(personId, phoneNumber);
+            var entityDto = _mapper.Map<PersonPhoneDto>(entity);
+            var response = new PersonPhoneResponse(); //TODO: Should be resolving DI for these line
 
-
-            response.PersonObjects = new List<PersonDto>();
-            response.PersonObjects.Add(entityDto);
+            response.PersonPhoneObjects = new List<PersonPhoneDto>();
+            response.PersonPhoneObjects.Add(entityDto);
 
 
             return response;
         }
-
+             
     }
 }

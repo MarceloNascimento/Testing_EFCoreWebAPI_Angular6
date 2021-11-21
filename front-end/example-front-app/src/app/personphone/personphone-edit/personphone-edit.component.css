@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+
+/* ############# validações */
+
+.requirido {
+  color: #ff0000;
+}
+
+
+/* ############# Components DOM */
+
+input[type=text] {
+  border: none;
+  border-bottom: 2px solid #bfbfbf;
+  width: 100%;
+  padding: 12px;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+input[type=text] :focus,
+select :focus,
+textarea :focus {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+input[type=file] {
+  border: none;
+  border-bottom: 2px solid #bfbfbf;
+  width: 100%;
+  padding: 12px;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+input[type=file] :focus {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+
+/* ############# Fim componentes da DOM   ################################*/

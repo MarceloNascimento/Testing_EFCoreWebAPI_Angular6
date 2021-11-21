@@ -4,8 +4,8 @@
     using System.Threading.Tasks;
     public interface IPersonPhoneFacade
     {
-        Task<PersonResponse> FindAllAsync();
-        Task<PersonResponse> FindByIdAsync(int id);
+        Task<PersonPhoneResponse> FindAllAsync();
+        Task<PersonPhoneResponse> FindEntityAsync(int personId, string phoneNumber);
 
     }
 }

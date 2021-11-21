@@ -24,7 +24,7 @@ namespace Examples.Charge.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ExampleListResponse>> Get() => Response(await _facade.FindAllAsync());
+        public async Task<ActionResult<PersonResponse>> Get() => Response(await _facade.FindAllAsync());
 
 
 

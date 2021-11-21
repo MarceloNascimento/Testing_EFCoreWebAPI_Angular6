@@ -10,7 +10,7 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces
     {
         Task<IEnumerable<PersonPhone>> FindAllAsync();
 
-        Task<PersonPhone> FindByIdAsync(int id);
+        Task<PersonPhone> FindEntityAsync(int personId, string phoneNumber);
 
     }
 }

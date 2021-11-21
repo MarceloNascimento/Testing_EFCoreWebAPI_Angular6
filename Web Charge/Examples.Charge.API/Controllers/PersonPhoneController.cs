@@ -8,6 +8,7 @@ namespace Examples.Charge.API.Controllers
     using Examples.Charge.Application.Messages.Request;
     using Examples.Charge.Application.Messages.Response;
     using System.Threading.Tasks;
+    using System;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -22,12 +23,24 @@ namespace Examples.Charge.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ExampleListResponse>> Get() => Response(await _facade.FindAllAsync());
+        public async Task<ActionResult<PersonPhoneResponse>> Get() => Response(await _facade.FindAllAsync());
 
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("{personId}/{phoneNumber}")]
+        public async Task<ActionResult<PersonPhoneResponse>> Get(int personId, string phoneNumber)
         {
-            return Response(null);
+            try
+            {
+                var response = await _facade.FindEntityAsync(personId, phoneNumber);
+                return Response(response);
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
+
+            //return Response(null);
         }
 
         [HttpPost]

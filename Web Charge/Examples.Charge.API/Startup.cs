@@ -26,42 +26,61 @@ namespace Examples.Charge.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+
+            /*
+             * TODO: Ajust it when move to another envss
+             * it's just for local machine, 
+             */
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                 .AllowAnyOrigin()
+                 .AllowAnyMethod()
+                 .AllowAnyHeader()
+                 .AllowCredentials()
+                );
+            });
+
+
             services.AddDbContext<ExampleContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Examples.Charge.Infra.Data.Configuration"));
             });
+
             NativeInjector.Setup(services);
+
             services.AddAutoMapper();
-
             services.AddSwaggerGen(options =>
-            {
-                options.CustomSchemaIds(x => x.FullName);
+                        {
+                            options.CustomSchemaIds(x => x.FullName);
 
-                options.CustomOperationIds(e =>
-                {
-                    return $"{e.ActionDescriptor.RouteValues["controller"]}_{e.HttpMethod}{e.ActionDescriptor.Parameters?.Select(a => a.Name).ToString()}";
-                });
-                options.DescribeAllEnumsAsStrings();
-                options.SwaggerDoc("v1", new Info
-                {
-                    Version = "v1",
-                    Title = "Example Api",
-                    Description = "Example Charge Api.",
-                    TermsOfService = "None",
-                    Contact = new Contact
-                    {
-                        Name = "Example",
-                        Email = "example@example.com"
-                    }
-                });
+                            options.CustomOperationIds(e =>
+                            {
+                                return $"{e.ActionDescriptor.RouteValues["controller"]}_{e.HttpMethod}{e.ActionDescriptor.Parameters?.Select(a => a.Name).ToString()}";
+                            });
+                            options.DescribeAllEnumsAsStrings();
+                            options.SwaggerDoc("v1", new Info
+                            {
+                                Version = "v1",
+                                Title = "Example Api",
+                                Description = "Example Charge Api.",
+                                TermsOfService = "None",
+                                Contact = new Contact
+                                {
+                                    Name = "Example",
+                                    Email = "example@example.com"
+                                }
+                            });
 
-                var xmlWebApiFile = Path.Combine(AppContext.BaseDirectory, $"PGC.Api.xml");
-                if (File.Exists(xmlWebApiFile))
-                {
-                    options.IncludeXmlComments(xmlWebApiFile);
-                }
-            });
+                            var xmlWebApiFile = Path.Combine(AppContext.BaseDirectory, $"PGC.Api.xml");
+                            if (File.Exists(xmlWebApiFile))
+                            {
+                                options.IncludeXmlComments(xmlWebApiFile);
+                            }
+                        });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -69,7 +88,11 @@ namespace Examples.Charge.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+               
             }
+
+            app.UseCors("CorsPolicy");
+
 
             app.UseSwagger();
 
@@ -81,6 +104,10 @@ namespace Examples.Charge.API
 
 
             app.UseMvc();
+
+
+
+
         }
 
     }

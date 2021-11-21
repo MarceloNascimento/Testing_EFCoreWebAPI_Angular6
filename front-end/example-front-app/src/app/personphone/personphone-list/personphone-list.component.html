@@ -1,0 +1,34 @@
+<p>
+  phone works!
+</p>
+
+<div class="panel panel-default ">
+  <div class="panel-heading silver">
+      <h2 class="btn btn-primary" routerLink="/consultorias-create">Adicionar +</h2>
+  </div>
+  <div class="panel-body">
+      <div class="table-responsive">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>NAME</th>
+                      <th>PHONE</th>
+                      <th>TYPE</th>
+                      <th>Ações</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let personphone of personphones">
+                      <td>{{personphone.phoneNumberTypeID}}</td>
+                      <td>{{personphone.personName}}</td>
+                      <td>{{personphone.phoneNumber}}</td>
+                      <td>{{personphone.phoneNumberTypeName}}</td>
+                      <td>
+                          <button (click)="editar(personphone.personID, personphone.phoneNumber)" class="btn btn-info" style="margin-left: 10px">Editar</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
