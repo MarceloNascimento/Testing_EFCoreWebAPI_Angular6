@@ -16,8 +16,8 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
         public async Task<IEnumerable<PersonPhone>> FindAllAsync() => (await _personPhoneRepository.FindAllAsync());
 
 
-        public async Task<PersonPhone> FindEntityAsync(int personId, string phoneNumber) => (await _personPhoneRepository.FindEntityAsync(personId, phoneNumber));
+        public async Task<PersonPhone> FindEntityAsync(int personId, string phoneNumber) => await _personPhoneRepository.FindEntityAsync(personId, phoneNumber);
 
-       
+        public async Task<PersonPhone> UpdateAsync(PersonPhone personPhone) => await _personPhoneRepository.UpdateAsync(personPhone);
     }
 }

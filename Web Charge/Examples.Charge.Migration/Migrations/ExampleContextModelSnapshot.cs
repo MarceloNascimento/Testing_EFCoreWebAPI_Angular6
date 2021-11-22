@@ -83,7 +83,8 @@ namespace Examples.Charge.Infra.Data.Configuration.Migrations
                     b.Property<int>("PhoneNumberTypeID")
                         .HasColumnName("PhoneNumberTypeID");
 
-                    b.HasKey("BusinessEntityID", "PhoneNumber", "PhoneNumberTypeID");
+                 
+                    b.HasKey("BusinessEntityID");
 
                     b.HasIndex("PhoneNumberTypeID");
 

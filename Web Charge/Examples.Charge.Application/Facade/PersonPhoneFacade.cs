@@ -6,6 +6,7 @@ namespace Examples.Charge.Application.Facade
     using Examples.Charge.Application.Dtos;
     using Examples.Charge.Application.Interfaces;
     using Examples.Charge.Application.Messages.Response;
+    using Examples.Charge.Domain.Aggregates.PersonAggregate;
     using Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces;
     using global::AutoMapper;
     using System.Collections.Generic;
@@ -44,6 +45,17 @@ namespace Examples.Charge.Application.Facade
 
             return response;
         }
-             
+
+        public async Task<PersonPhoneResponse> UpdateAsync(PersonPhoneDto personPhoneDto)
+        {
+            var entity    = _mapper.Map<PersonPhoneDto,PersonPhone>(personPhoneDto);              
+            var entityDto = _mapper.Map<PersonPhoneDto>(await _personPhoneService.UpdateAsync(entity));
+
+            var response  = new PersonPhoneResponse(); //TODO: Should be fix DI for this line
+            response.PersonPhoneObjects = new List<PersonPhoneDto>();
+            response.PersonPhoneObjects.Add(entityDto);
+
+            return response;
+        }
     }
 }

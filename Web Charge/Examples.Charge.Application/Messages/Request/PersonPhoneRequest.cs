@@ -1,8 +1,10 @@
-﻿namespace Examples.Charge.Application.Messages.Request
+﻿
+namespace Examples.Charge.Application.Messages.Request
 {
+    using Examples.Charge.Application.Dtos;
+
     public class PersonPhoneRequest
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
+        public PersonPhoneDto PersonPhoneObjects { get; set; }
     }
 }

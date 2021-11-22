@@ -63,7 +63,7 @@ namespace Examples.Charge.Infra.Data.Configuration.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonPhone", x => new { x.BusinessEntityID, x.PhoneNumber, x.PhoneNumberTypeID });
+                    //table.PrimaryKey("PK_PersonPhone", x => new { x.BusinessEntityID});
                     table.ForeignKey(
                         name: "FK_PersonPhone_Person_BusinessEntityID",
                         column: x => x.BusinessEntityID,

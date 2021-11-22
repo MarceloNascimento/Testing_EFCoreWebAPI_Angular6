@@ -23,14 +23,11 @@ export class PersonPhoneListComponent implements OnInit {
   LoadData():void {
 
     this._phoneService.getList().subscribe(response => {
-      console.log(response);
-      console.log(response.data);
-      console.log(response.data.personPhoneObjects[0]);
+
       if (response.success && response.data.personPhoneObjects.length) {
 
-
-
         this.personphones = response.data.personPhoneObjects;
+
       }
     });
 
@@ -38,7 +35,7 @@ export class PersonPhoneListComponent implements OnInit {
   }
 
 
-  editar(personId: number, phoneNumber : string):void {
+  edit(personId: number, phoneNumber : string):void {
     this._router.navigate(['phones-edit', personId, phoneNumber]);
   }
 

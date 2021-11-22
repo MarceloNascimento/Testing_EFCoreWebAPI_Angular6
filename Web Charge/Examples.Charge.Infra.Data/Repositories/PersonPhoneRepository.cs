@@ -50,9 +50,85 @@ namespace Examples.Charge.Infra.Data.Repositories
                 .Include(personPhone => personPhone.PhoneNumberType)
                 .ToListAsync();
 
-        public async Task<PersonPhone> UpdateAsybc(PersonPhone entity) => await Task.Run(() =>  _context.PersonPhone.Update(entity).Entity);
 
 
+
+        //public async Task<PersonPhone> UpdateAsync(PersonPhone entity)
+        //{
+        //    try
+        //    {
+        //        using (var db = _context)
+        //        {
+        //            db.Database.EnsureCreated();
+        //            var personPhone = new PersonPhone
+        //            {
+        //                BusinessEntityID = entity.BusinessEntityID,
+        //                PhoneNumber = entity.PhoneNumber,
+        //                PhoneNumberTypeID = entity.PhoneNumberTypeID
+        //            };
+
+
+        //            db.Add(personPhone);
+        //            db.SaveChanges();
+        //            personPhone.PhoneNumberTypeID = entity.PhoneNumberTypeID;
+        //            db.Update(personPhone);
+        //            db.SaveChanges();
+
+        //            return await Task.Run(() => personPhone);
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //}
+        public async Task<PersonPhone> UpdateAsync(PersonPhone entity)
+        {
+            try
+            {
+
+                _context.Database.OpenConnection();
+                await _context.Database.BeginTransactionAsync();
+                var person = entity.Person;
+                var phoneNumberType = entity.PhoneNumberType;
+
+                entity.PhoneNumberType = null;
+                entity.Person = null;
+
+                // _context.PersonPhone.Attach(entity).State = EntityState.Modified;
+
+                var result = await Task.Run(() => _context.PersonPhone.Update(entity).Entity);
+                await Task.Run(() => _context.Entry<PersonPhone>(entity).State = EntityState.Modified);
+
+                //await Task.Run(() => _context.PersonPhone.Entry(entity).State = EntityState.Modified);
+
+                //_context.Entry(entity).State = EntityState.Modified;
+
+                await _context.SaveChangesAsync();
+                _context.Database.CommitTransaction();
+
+                _context.Database.CloseConnection();
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+
+        public async Task<PersonPhone> InsertAsync(PersonPhone entity)
+        {
+            var result = (await _context.AddAsync<PersonPhone>(entity)).Entity;
+            await _context.SaveChangesAsync();
+
+            return result;
+        }
 
     }
 }

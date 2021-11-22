@@ -25,9 +25,6 @@ namespace Examples.Charge.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-
             /*
              * TODO: Ajust it when move to another envss
              * it's just for local machine, 
@@ -35,14 +32,14 @@ namespace Examples.Charge.API
 
             services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy", builder => builder
+                options.AddPolicy("AllowOrigin", builder => builder                
                  .AllowAnyOrigin()
                  .AllowAnyMethod()
                  .AllowAnyHeader()
-                 .AllowCredentials()
-                );
+                 .AllowCredentials());                 
             });
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<ExampleContext>(options =>
             {
@@ -85,13 +82,17 @@ namespace Examples.Charge.API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            app.UseCors("AllowOrigin");
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                
             }
 
-            app.UseCors("CorsPolicy");
+           
 
 
             app.UseSwagger();
